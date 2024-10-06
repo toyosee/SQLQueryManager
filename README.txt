@@ -22,15 +22,13 @@ To set up this application, follow these steps:
 1. Clone the repository or download the project files.
 2. Navigate to the project directory in your terminal or command prompt.
 3. Install the required libraries using the following command:
-   ```bash
    pip install -r requirements.txt
-   ```
+
 
 ## Usage
 1. Run the application:
-   ```bash
    python your_application_file.py
-   ```
+
 2. Enter the connection details (Host, User, Password) to connect to the database.
 3. Select the desired database and enter your SQL query in the provided text area.
 4. Click the "Execute" button to run the query and view the results.
@@ -38,3 +36,7 @@ To set up this application, follow these steps:
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
+For inquiry and collaboration:
+Elijah Abolaji
+tyabolaji@gmail.com

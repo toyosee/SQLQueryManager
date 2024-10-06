@@ -1,3 +1,6 @@
+# Author: Elijah Abolaji
+# mail: tyabolaji@gmail.com
+
 import tkinter as tk
 from tkinter import messagebox, ttk, filedialog
 import ttkbootstrap as ttk
