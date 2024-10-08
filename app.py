@@ -24,15 +24,25 @@ def connect_to_database():
     host = host_entry.get()
     user = user_entry.get()
     password = pass_entry.get()
+    port = port_entry.get() if port_entry.get() else 3306  # Default to 3306 if no port is provided
 
     try:
-        conn = mc.connect(host=host, user=user, password=password)
+        conn = mc.connect(host=host, user=user, password=password, port=int(port))
         if conn.is_connected():
             messagebox.showinfo("Connection", "Connection Successful")
             load_databases(conn)
             show_query_screen()
         else:
             messagebox.showerror("Connection", "Connection Failed")
+
+    except ValueError:
+        # Handle non-integer values in the port field
+        messagebox.showerror("Connection Error", "Invalid port number. Please enter a valid port number.")
+    
+    except mc.InterfaceError:
+        # Handle cases where the connection interface fails (e.g., unreachable host or wrong port)
+        messagebox.showerror("Connection Error", "Cannot connect to the specified host. Please check the host address and port.")
+    
     except mc.Error as e:
         messagebox.showerror("Connection Error", str(e))
 
@@ -55,6 +65,7 @@ def execute_query():
         cursor = conn.cursor(dictionary=True)
         cursor.execute(query)
         results = cursor.fetchall()
+        #print(results)
 
         if results:
             # Display query results as JSON
@@ -116,9 +127,15 @@ ttk.Label(connection_frame, text="Password:").grid(row=3, column=0, padx=10, pad
 pass_entry = ttk.Entry(connection_frame, show="*")
 pass_entry.grid(row=3, column=1, padx=10, pady=5)
 
+# Port entry for remote database connection (optional)
+ttk.Label(connection_frame, text="Port:").grid(row=4, column=0, padx=10, pady=5)
+port_entry = ttk.Entry(connection_frame)
+port_entry.grid(row=4, column=1, padx=10, pady=5)
+
+
 # Connect button
 connect_button = ttk.Button(connection_frame, text="Connect", command=connect_to_database, bootstyle=SUCCESS)
-connect_button.grid(row=4, column=0, columnspan=2, pady=10)
+connect_button.grid(row=5, column=0, columnspan=2, pady=10)
 
 # Query frame - hidden until connection is successful
 query_frame = ttk.Frame(root)
