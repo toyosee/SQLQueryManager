@@ -4,8 +4,8 @@
 This application is designed to connect to a MySQL database, execute SQL queries, and display the results in JSON format. Users can export the query results as either JSON or CSV files. The application features a modern and user-friendly interface built with Tkinter and ttkbootstrap.
 
 ## Features
-- Connect to MySQL database using connection strings (Host, User, Password).
-- Load available databases into a dropdown list after a successful connection.
+- Connect to MySQL database using connection strings (Host, User, Password, Port). If port is different from default MySQL port, provide port number. 3306 is default
+- Loads available databases into a dropdown list after a successful connection.
 - Execute SQL queries and display results in JSON format.
 - Export query results as JSON or CSV files.
 - Modern UI with ttkbootstrap styling.
